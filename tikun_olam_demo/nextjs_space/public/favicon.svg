@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <pattern id="circuit" patternUnits="userSpaceOnUse" width="32" height="32" patternTransform="rotate(0)">
+      <path d="M8 0v8h8M24 8h8v8M0 24h8v8M16 16h8M16 24v8" stroke="#9b7fd4" stroke-width="0.5" fill="none" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="256" height="256" fill="#1a0a2e"/>
+  <rect width="256" height="256" fill="url(#circuit)"/>
+  
+  <!-- Connecting paths -->
+  <g stroke="#d4af37" stroke-width="1.5" fill="none" opacity="0.4">
+    <path d="M128 40 L90 80"/>
+    <path d="M128 40 L166 80"/>
+    <path d="M90 80 L128 120"/>
+    <path d="M166 80 L128 120"/>
+    <path d="M90 80 L90 140"/>
+    <path d="M166 80 L166 140"/>
+    <path d="M128 120 L90 140"/>
+    <path d="M128 120 L166 140"/>
+    <path d="M90 140 L128 180"/>
+    <path d="M166 140 L128 180"/>
+    <path d="M128 180 L90 200"/>
+    <path d="M128 180 L166 200"/>
+    <path d="M90 200 L128 220"/>
+    <path d="M166 200 L128 220"/>
+    <path d="M90 140 L166 140"/>
+    <path d="M90 200 L166 200"/>
+  </g>
+  
+  <!-- Sefirot nodes -->
+  <g>
+    <!-- Keter -->
+    <circle cx="128" cy="40" r="12" fill="#4a1a7a" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="128" cy="40" r="6" fill="#d4af37" opacity="0.8"/>
+    
+    <!-- Chokmah -->
+    <circle cx="166" cy="80" r="11" fill="#4a1a7a" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="166" cy="80" r="5" fill="#d4af37" opacity="0.8"/>
+    
+    <!-- Binah -->
+    <circle cx="90" cy="80" r="11" fill="#4a1a7a" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="90" cy="80" r="5" fill="#d4af37" opacity="0.8"/>
+    
+    <!-- Chesed -->
+    <circle cx="166" cy="140" r="11" fill="#4a1a7a" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="166" cy="140" r="5" fill="#d4af37" opacity="0.8"/>
+    
+    <!-- Gevurah -->
+    <circle cx="90" cy="140" r="11" fill="#4a1a7a" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="90" cy="140" r="5" fill="#d4af37" opacity="0.8"/>
+    
+    <!-- Tiferet -->
+    <circle cx="128" cy="120" r="11" fill="#4a1a7a" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="128" cy="120" r="5" fill="#d4af37" opacity="0.8"/>
+    
+    <!-- Netzach -->
+    <circle cx="166" cy="200" r="11" fill="#4a1a7a" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="166" cy="200" r="5" fill="#d4af37" opacity="0.8"/>
+    
+    <!-- Hod -->
+    <circle cx="90" cy="200" r="11" fill="#4a1a7a" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="90" cy="200" r="5" fill="#d4af37" opacity="0.8"/>
+    
+    <!-- Yesod -->
+    <circle cx="128" cy="180" r="11" fill="#4a1a7a" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="128" cy="180" r="5" fill="#d4af37" opacity="0.8"/>
+    
+    <!-- Malkuth -->
+    <circle cx="128" cy="220" r="12" fill="#4a1a7a" stroke="#d4af37" stroke-width="2"/>
+    <circle cx="128" cy="220" r="6" fill="#d4af37" opacity="0.8"/>
+  </g>
+</svg>

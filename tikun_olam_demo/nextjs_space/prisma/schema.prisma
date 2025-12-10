@@ -1,0 +1,112 @@
+// Framework Tikun Olam - Database Schema
+// Stores ethical analysis results from the 10 Sefirot system
+
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/tikun_olam_demo/nextjs_space/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// Main case table - stores analysis metadata
+model Case {
+  id            String   @id @default(cuid())
+  caseName      String   @unique
+  scenario      String   @db.Text
+  executionId   Int      @default(1)
+  timestamp     DateTime @default(now())
+  createdAt     DateTime @default(now())
+  
+  // Relations
+  sefirotResults SefirotResult[]
+  binahSigma     BinahSigma?
+  
+  @@index([caseName])
+  @@index([timestamp])
+}
+
+// Stores individual Sefira analysis results
+model SefirotResult {
+  id              String   @id @default(cuid())
+  caseId          String
+  case            Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  
+  sefira          String   // keter, chochmah, binah, chesed, gevurah, tiferet, netzach, hod, yesod, malchut
+  sefirotNumber   Int
+  hebrewName      String
+  
+  // Scores and metrics (JSON for flexibility)
+  scores          Json?    // Varies by Sefira
+  mainScore       Float?   // Primary score (alignment_score, confidence_level, etc.)
+  
+  // Full analysis data
+  analysisData    Json     @db.JsonB
+  
+  // Metadata
+  modelUsed       String?
+  timestamp       DateTime @default(now())
+  activationCount Int      @default(1)
+  
+  @@unique([caseId, sefira])
+  @@index([caseId])
+  @@index([sefira])
+}
+
+// Special table for BinahSigma multi-civilizational analysis
+model BinahSigma {
+  id                    String   @id @default(cuid())
+  caseId                String   @unique
+  case                  Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  
+  // Analysis mode
+  mode                  String   @default("sigma") // simple or sigma
+  
+  // Western perspective
+  westPerspective       String
+  westAnalysis          Json     @db.JsonB
+  
+  // Eastern perspective  
+  eastPerspective       String
+  eastAnalysis          Json     @db.JsonB
+  
+  // Synthesis
+  sigmaSynthesis        Json     @db.JsonB
+  
+  // Metrics
+  biasDelta             Float
+  divergenceLevel       String
+  blindSpotsDetected    Int
+  convergencePoints     Int
+  contextualDepthScore  Float
+  
+  // Models used
+  modelWest             String?
+  modelEast             String?
+  
+  timestamp             DateTime @default(now())
+  
+  @@index([caseId])
+}
+
+// User-submitted analyses (for new analysis form)
+model UserAnalysis {
+  id            String   @id @default(cuid())
+  caseName      String
+  scenario      String   @db.Text
+  status        String   @default("pending") // pending, processing, completed, error
+  
+  // Results (stored when analysis completes)
+  results       Json?    @db.JsonB
+  
+  // Metadata
+  createdAt     DateTime @default(now())
+  completedAt   DateTime?
+  error         String?  @db.Text
+  
+  @@index([status])
+  @@index([createdAt])
+}
